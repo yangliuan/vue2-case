@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       swiperOptions: {
-        speed: 300,
         loop: true,
         direction: 'horizontal',
       },
