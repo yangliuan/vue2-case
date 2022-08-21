@@ -12,31 +12,49 @@
 </template>
 
 <script>
+import { exportImgQueue } from  '@/api/excel.js'
+import { laraecho } from '@/utils/laravel-echo'
+import { Message } from 'element-ui'
+
 export default {
     name: 'Excel',
     data() {
       return {
       }
     },
+    created() {
+        laraecho.channel('excel')
+        .listen('ExcelExportCompletedEvent', (e) => {
+            this.downloadExcel(e.excel_path,e.disk)
+            console.log(e);
+        })
+    },
     methods: {
         exportStore() {
-            window.open(process.env.VUE_APP_API_BASE_URL+'/api/excel/export/store')
+            window.open(process.env.VUE_APP_API_BASE_URL + '/api/excel/export/store')
         },
         exportDownload() {
-            window.open(process.env.VUE_APP_API_BASE_URL+'/api/excel/export/download')
+            window.open(process.env.VUE_APP_API_BASE_URL + '/api/excel/export/download')
         },
         exportDownloadSheets() {
-            window.open(process.env.VUE_APP_API_BASE_URL+'/api/excel/export/download-sheets')
+            window.open(process.env.VUE_APP_API_BASE_URL + '/api/excel/export/download-sheets')
         },
         exportDownloadImages() {
-            window.open(process.env.VUE_APP_API_BASE_URL+'/api/excel/export/download-images')
+            window.open(process.env.VUE_APP_API_BASE_URL + '/api/excel/export/download-images')
         },
         exportQueue() {
-            window.open(process.env.VUE_APP_API_BASE_URL+'/api/excel/export/queue')
+            window.open(process.env.VUE_APP_API_BASE_URL + '/api/excel/export/queue')
         },
         exportQueueWsImg() {
-            
+            exportImgQueue()
         },
+        downloadExcel(excel_path,disk) {
+            this.$message({
+                message: 'excel异步导出完毕，开始下载...',
+                type: 'success'
+            })
+            window.open(process.env.VUE_APP_API_BASE_URL + '/api/files/download?storage_path=' + excel_path + '&disk=' + disk)
+        }
     }
 }
 </script>
