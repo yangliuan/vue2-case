@@ -49,7 +49,7 @@ export default {
             exportImgQueue()
         },
         downloadExcel(excel_path,disk) {
-            this.$message({
+            Message({
                 message: 'excel异步导出完毕，开始下载...',
                 type: 'success'
             })
