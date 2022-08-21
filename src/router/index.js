@@ -19,6 +19,11 @@ const routes = [
     path: '/control',
     name: 'Control',
     component: () => import('../views/control.vue')
+  },
+  {
+    path: '/excel',
+    name: 'Excel',
+    component: () => import('../views/excel.vue')
   }
 ]
 
