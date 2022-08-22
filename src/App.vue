@@ -5,6 +5,7 @@
       <router-link to="/exhibition">Exhibition</router-link> |
       <router-link to="/control">Control</router-link> |
       <router-link to="/excel">Excel</router-link> |
+      <router-link to="/word">Word</router-link> |
     </nav>
     <router-view/>
   </div>

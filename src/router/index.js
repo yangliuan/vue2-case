@@ -24,6 +24,11 @@ const routes = [
     path: '/excel',
     name: 'Excel',
     component: () => import('../views/excel.vue')
+  },
+  {
+    path: '/word',
+    name: 'Word',
+    component: () => import('../views/word.vue')
   }
 ]
 
