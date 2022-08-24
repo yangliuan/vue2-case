@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-import { htmlToWord } from '@/api/word'
+
 export default {
     data() {
       return {
@@ -48,7 +48,7 @@ export default {
     },
     methods: {
       onHtmlToWordSubmit() {
-        htmlToWord(this.form)
+        window.open(process.env.VUE_APP_API_BASE_URL + '/api/doc/word/html-to-word?url='+this.form.url)
       },
       handleClose(done) {
         this.$confirm('确认关闭？')
