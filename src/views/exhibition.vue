@@ -14,7 +14,7 @@
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import { laraecho } from '@/utils/laravel-echo'
-import 'swiper/css/swiper.css'
+import 'swiper/swiper-bundle.css'
 
 export default {
   name: 'Exhibition',
@@ -40,10 +40,10 @@ export default {
       .listen('AllDeviceEvent',(data) => {     
         this.swiperHandleInstruction(data)
       })
-    laraecho.private('device.1')
-      .listen('AuthDeviceEvent',(data) => {     
-        this.swiperHandleInstruction(data)
-      })
+    // laraecho.private('device.1')
+    //   .listen('AuthDeviceEvent',(data) => {     
+    //     this.swiperHandleInstruction(data)
+    //   })
   },
   methods: {
     swiperHandleInstruction(instruction) {
