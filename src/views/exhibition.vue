@@ -8,8 +8,25 @@
       <swiper-slide> <img src="@/assets/img/4.gif"> </swiper-slide>
       <swiper-slide> <img src="@/assets/img/5.jpg"> </swiper-slide>
     </swiper>
-    <el-container>
+    <el-container class="container">
       <el-header>公共广播</el-header>
+      <el-main>
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <div class="grid-content bg-purple"> 
+              <el-button type="primary" round @click="sendInstruction('prev')">prev</el-button>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <el-button type="primary" round @click="sendInstruction('next')">next</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </el-main>
+    </el-container>
+    <el-container class="container">
+      <el-header>私有广播</el-header>
       <el-main>
         <el-row :gutter="20">
           <el-col :span="6">
@@ -32,7 +49,7 @@
 import { allDevices } from '@/api/control'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import { laraecho } from '@/utils/laravel-echo'
-import 'swiper/swiper-bundle.css'
+import 'swiper/css/swiper.css'
 
 export default {
   name: 'Exhibition',
@@ -158,6 +175,13 @@ export default {
   #swiper {
     width:800px;
     height:600px;
+  }
+
+  .container {
+    margin: auto;
+    padding: 5px;
+    width:800px;
+    height:auto;
   }
 
 </style>
