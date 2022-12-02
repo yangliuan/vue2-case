@@ -13,7 +13,6 @@
 </template>
 <script>
 import { deviceLogin } from  '@/api/device.js'
-
 export default {
   name: 'APP',
   data () {
@@ -25,7 +24,11 @@ export default {
   },
   methods: {
     onSubmit() {
-        deviceLogin({mac:this.form.mac})
+      this.$store.dispatch('device/login',this.form.mac).then(() => {
+        this.$router.push({
+          path: this.redirect || '/exhibition'
+        })
+      })
     }
   }
 }

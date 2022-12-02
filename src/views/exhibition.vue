@@ -31,12 +31,12 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <div class="grid-content bg-purple"> 
-              <el-button type="primary" round @click="sendInstruction('prev')">prev</el-button>
+              <el-button type="primary" round @click="sendAuthInstruction('prev')">prev</el-button>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple">
-              <el-button type="primary" round @click="sendInstruction('next')">next</el-button>
+              <el-button type="primary" round @click="sendAuthInstruction('next')">next</el-button>
             </div>
           </el-col>
         </el-row>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { allDevices } from '@/api/control'
+import { allDevices, authDevices } from '@/api/control'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import { laraecho } from '@/utils/laravel-echo'
 import 'swiper/css/swiper.css'
@@ -98,6 +98,12 @@ export default {
       allDevices({action_type:'move',action:direction})
       .then((response)=>{
         console.log(response)
+      })
+    },
+    sendAuthInstruction(direction){
+      authDevices(1,{action_type:'move',action:direction})
+      .then((response)=>{
+         console.log(response)
       })
     }
   }
