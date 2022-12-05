@@ -1,16 +1,30 @@
 import axios from "axios"
 import { Message } from 'element-ui'
+import store from '@/store'
+import { getToken } from '@/utils/auth'
+
 // create an axios instance
 const http = axios.create({
     baseURL: process.env.VUE_APP_API_BASE_URL, // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
-    timeout: 5000 // request timeout
+    timeout: 5000, // request timeout
+    //request json and response json
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
 })
 
 // request interceptor
 http.interceptors.request.use(
   config => {
     // do something before request is sent
+    
+    if (store.getters.token) {
+      // please modify it according to the actual situation
+      config.headers['Authorization'] = `Bearer ${getToken()}`
+    }
+
     return config
   },
 

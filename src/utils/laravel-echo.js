@@ -1,4 +1,5 @@
 import Echo from 'laravel-echo';
+import { getToken } from '@/utils/auth'
 
 window.pusher = require('pusher-js');
 //REF https://learnku.com/laravel/t/17293
@@ -10,7 +11,7 @@ const laraecho = new Echo({
     wsPort: process.env.VUE_APP_LARAECHO_WS_PORT,
     forceTLS: false,
     enabledTransports: ['ws'],
-    auth: { headers: { 'Authorization': 'Bearer ' +  '1|3Px8ayhtoTEsw8tQ48vtViCzDsvpzs501FYrR1QD','Accept': 'application/json' } }
+    auth: { headers: { 'Authorization': 'Bearer ' +  getToken(), 'Accept': 'application/json' } }
 })
 
 export { laraecho }
